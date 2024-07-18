@@ -5,14 +5,15 @@ using UnityEngine.InputSystem;
 
 public class PlayerHands : MonoBehaviour
 {
+    [Header("Left Hand")]
     [SerializeField]
     GameObject leftHand;
     [SerializeField]
-    GameObject rightHand;
-
-    [SerializeField]
     List<Equipment_Base> leftHandEquipment;
 
+    [Header("Right Hand")]
+    [SerializeField]
+    GameObject rightHand;
     [SerializeField]
     List<Equipment_Base> rightHandEquipment;
 
@@ -27,6 +28,18 @@ public class PlayerHands : MonoBehaviour
         playerActions.HandActions.SwitchLeftHand.performed += SwitchLeftHand;
         playerActions.HandActions.UseRightHand.performed += UseRightHand;
         playerActions.HandActions.SwitchRightHand.performed += SwitchRightHand;
+
+        foreach (var item in leftHandEquipment)
+        {
+            item.gameObject.SetActive(false);
+        }
+        foreach (var item in rightHandEquipment)
+        {
+            item.gameObject.SetActive(false);
+        }
+
+        leftHandEquipment[leftHandIndex].gameObject.SetActive(true);
+        rightHandEquipment[rightHandIndex].gameObject.SetActive(true);
     }
 
     private void OnEnable() {
@@ -47,11 +60,15 @@ public class PlayerHands : MonoBehaviour
 
     public void SwitchLeftHand(InputAction.CallbackContext context) {
         Debug.Log("Left hand switched!");
+        leftHandEquipment[leftHandIndex].gameObject.SetActive(false);
         leftHandIndex = (leftHandIndex + 1) % 2;
+        leftHandEquipment[leftHandIndex].gameObject.SetActive(true);
     }
 
     public void SwitchRightHand(InputAction.CallbackContext context) {
         Debug.Log("Right hand switched!");
+        rightHandEquipment[rightHandIndex].gameObject.SetActive(false);
         rightHandIndex = (rightHandIndex + 1) % 2;
+        rightHandEquipment[rightHandIndex].gameObject.SetActive(true);
     }
 }

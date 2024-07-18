@@ -180,6 +180,54 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Menu",
+            "id": "ca899fdb-245e-46bc-adc3-c26e216794fc",
+            "actions": [
+                {
+                    "name": "Escape",
+                    "type": "Button",
+                    "id": "4ea2e99c-832e-4439-bdc7-7573db2092d1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "UpgradeMenu",
+                    "type": "Button",
+                    "id": "8ebeaa67-765f-42ef-982e-8c499e7c2690",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "d99f4932-9a50-4d15-91cd-489d5584b31b",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Escape",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b8fd06fe-e124-469d-83e6-bc6274aec0cd",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UpgradeMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
