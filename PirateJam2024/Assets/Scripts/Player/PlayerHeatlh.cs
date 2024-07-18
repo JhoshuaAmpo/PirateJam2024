@@ -12,6 +12,13 @@ public class PlayerHeatlh : MonoBehaviour
         maxHP = currentHP;
     }
 
+    public void TakeDamage(float damage){
+        maxHP -= damage;
+        if (maxHP <= 0) {
+            ProcessDeath();
+        }
+    }
+
     private void ProcessDeath() {
         Debug.Log("Player died!");
     }
