@@ -59,14 +59,12 @@ public class PlayerHands : MonoBehaviour
     }
 
     public void SwitchLeftHand(InputAction.CallbackContext context) {
-        Debug.Log("Left hand switched!");
         leftHandEquipment[leftHandIndex].gameObject.SetActive(false);
         leftHandIndex = (leftHandIndex + 1) % 2;
         leftHandEquipment[leftHandIndex].gameObject.SetActive(true);
     }
 
     public void SwitchRightHand(InputAction.CallbackContext context) {
-        Debug.Log("Right hand switched!");
         rightHandEquipment[rightHandIndex].gameObject.SetActive(false);
         rightHandIndex = (rightHandIndex + 1) % 2;
         rightHandEquipment[rightHandIndex].gameObject.SetActive(true);

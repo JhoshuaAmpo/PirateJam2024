@@ -13,9 +13,16 @@ public class PlayerHeatlh : MonoBehaviour
     }
 
     public void TakeDamage(float damage){
-        maxHP -= damage;
-        if (maxHP <= 0) {
+        currentHP -= damage;
+        if (currentHP <= 0) {
             ProcessDeath();
+        }
+    }
+
+    public void Heal(float hpRegained){
+        if (currentHP > 0) {
+            currentHP += hpRegained;
+            Mathf.Clamp(currentHP, 0, maxHP);
         }
     }
 
