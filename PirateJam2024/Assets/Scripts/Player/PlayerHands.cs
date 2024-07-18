@@ -51,11 +51,11 @@ public class PlayerHands : MonoBehaviour
     }
 
     public void UseLeftHand(InputAction.CallbackContext context) {
-        Debug.Log("Left hand clicked!");
+        leftHandEquipment[leftHandIndex].ActivateObject();
     }
 
     public void UseRightHand(InputAction.CallbackContext context) {
-        Debug.Log("Right hand clicked!");
+        rightHandEquipment[rightHandIndex].ActivateObject();
     }
 
     public void SwitchLeftHand(InputAction.CallbackContext context) {
