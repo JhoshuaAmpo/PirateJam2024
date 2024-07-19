@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(PlayerStats))]
 public class PlayerHeatlh : MonoBehaviour
 {
-    [SerializeField]
-    private float maxHP;
+    PlayerStats stats;
     private float currentHP;
 
     private void Awake() {
+        stats = GetComponent<PlayerStats>();
         maxHP = currentHP;
     }
 
