@@ -2,15 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(PlayerStats))]
-public class PlayerHeatlh : MonoBehaviour
+public class PlayerHealth : MonoBehaviour
 {
-    PlayerStats stats;
+    [SerializeField]
+    private float maxHP;
     private float currentHP;
 
     private void Awake() {
-        stats = GetComponent<PlayerStats>();
-        maxHP = currentHP;
+        currentHP = maxHP;
     }
 
     public void TakeDamage(float damage){
@@ -25,6 +24,11 @@ public class PlayerHeatlh : MonoBehaviour
             currentHP += hpRegained;
             Mathf.Clamp(currentHP, 0, maxHP);
         }
+    }
+
+    public void UpgradeMaxHP(float hpGained) {
+        maxHP += hpGained;
+        currentHP = maxHP;
     }
 
     private void ProcessDeath() {

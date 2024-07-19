@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -68,5 +69,17 @@ public class PlayerHands : MonoBehaviour
         rightHandEquipment[rightHandIndex].gameObject.SetActive(false);
         rightHandIndex = (rightHandIndex + 1) % 2;
         rightHandEquipment[rightHandIndex].gameObject.SetActive(true);
+    }
+
+    public Equipment_Base CurrentLeftHand() {
+        return leftHandEquipment[leftHandIndex];
+    }
+
+    public Equipment_Base CurrentRightHand() {
+        return rightHandEquipment[rightHandIndex];
+    }
+
+    public bool IsTorchOut() {
+        return rightHandEquipment[rightHandIndex] is Torch_Equipment;
     }
 }
