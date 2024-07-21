@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AudioController : MonoBehaviour
 {
@@ -11,6 +13,16 @@ public class AudioController : MonoBehaviour
     [SerializeField]
     private List<AudioSource> sfxSources;
 
+    [Header("Settings Menu")]
+    [SerializeField]
+    private Slider musicSlider;
+    [SerializeField]
+    private Slider sfxSlider;
+    [SerializeField]
+    private TextMeshProUGUI musicPercentageText;
+    [SerializeField]
+    private TextMeshProUGUI sfxPercentageText;
+
     private void Awake() {
         foreach (var source in musicSources)
         {
@@ -19,6 +31,16 @@ public class AudioController : MonoBehaviour
         foreach (var source in sfxSources)
         {
             source.volume = GetSFXVolume();
+        }
+
+        if (musicSlider != null) {
+            musicSlider.value = GetMusicVolume();
+        }
+        if (sfxSlider != null) {
+            sfxSlider.value = GetSFXVolume();
+        }
+        if (musicPercentageText != null) {
+
         }
     }
 
@@ -36,6 +58,10 @@ public class AudioController : MonoBehaviour
 
     public float GetSFXVolume() {
         return GetVolume(AudioType.sfx);
+    }
+
+    public string FloatToPercent(float f) {
+        return Mathf.RoundToInt(f * 100) + "%";
     }
     
     private void SetVolume(AudioType type, float val) {
