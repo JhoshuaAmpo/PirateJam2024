@@ -10,12 +10,14 @@ public class EnemyHeath : MonoBehaviour
  [SerializeField]
 private int health = 100;
 private int CurrentHealth;
+private itemdrop getItem;
 
     // Start is called before the first frame update
     void Start()
     {
         CurrentHealth = health;
-
+        
+        getItem = GetComponent<itemdrop>();
     }
 
    private void OnCollisionEnter(Collision other)
@@ -28,6 +30,14 @@ private int CurrentHealth;
     {
         CurrentHealth -= damage;
        
+    }
+
+    {    if (getItem != null)
+                {
+                    getItem.DropItem();
+                    Debug.Log("Dropped an Item " + getItem);
+                }
+                Destroy(gameObject);
     }
    }
    

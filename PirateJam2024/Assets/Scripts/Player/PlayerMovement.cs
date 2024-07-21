@@ -5,8 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField]
-    private float moveSpeed = 0;
+    public Rigidbody rb;
+     private float moveSpeed = 0;
+
     [SerializeField]
     // private AudioSource footStepNoises;
     PlayerActions playerActions;
