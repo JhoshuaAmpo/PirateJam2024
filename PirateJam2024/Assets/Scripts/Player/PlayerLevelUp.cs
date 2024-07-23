@@ -15,8 +15,8 @@ public class PlayerLevelUp : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
-        if (other.CompareTag("IronIngot")) {
-            expPoints++;
+        if (other.CompareTag("Exp")) {
+            expPoints += other.GetComponent<ExpDrop>().GetExp();
             if (level+1 < nextLevelCost.Count && expPoints >= nextLevelCost[level]) {
                 expPoints -= nextLevelCost[level];
                 // Process level up

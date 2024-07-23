@@ -15,6 +15,8 @@ public class Sword_Equipment : Equipment_Base
     {
         float smallestDist = 10000000f;
         Transform closestEnemy = null;
+        // trigger sword strike anim
+        // play sword sfx
         foreach(Transform enemy in enemiesInStrikeRange) {
             float curDist = Vector3.Distance(enemy.position, strikeBox.bounds.center);
             if (curDist < smallestDist) {
