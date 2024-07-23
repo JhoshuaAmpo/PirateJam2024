@@ -12,13 +12,13 @@ public class PlayerMovement : MonoBehaviour
     // private AudioSource footStepNoises;
     PlayerActions playerActions;
     CharacterController characterController;
-    // Animator animator;
+    Animator animator;
 
     void Awake() {
         playerActions = new();
         playerActions.Movement.Enable();
         characterController = GetComponent<CharacterController>();
-        // animator = transform.root.GetComponentInChildren<Animator>();
+        animator = transform.root.GetComponentInChildren<Animator>();
         // footStepNoises.Pause();
     }
 
@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
     private void Move(){
         int forwardDir = (int)playerActions.Movement.Forward.ReadValue<float>();
         int sideDir = (int)playerActions.Movement.Strafe.ReadValue<float>();
-        // bool animRun = true;
+        animator.SetBool("IsRun", forwardDir != 0 || sideDir != 0);
         Vector3 moveVelocity = Vector3.zero;
         if (forwardDir != 0 && sideDir != 0) {
             Vector3 moveDir = forwardDir * transform.forward + sideDir * transform.right;
@@ -50,9 +50,6 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (sideDir != 0) {
             moveVelocity = sideDir * moveSpeed  * transform.right;
-        }
-        else {
-            // animRun = false;
         }
         // footStepNoises.enabled = forwardDir != 0  || sideDir != 0;
         // animator.SetBool("Run", animRun);
