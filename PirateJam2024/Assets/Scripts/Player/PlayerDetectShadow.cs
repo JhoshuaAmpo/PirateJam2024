@@ -13,18 +13,18 @@ public class PlayerDetectShadow : MonoBehaviour
     float yOffset;
 
     PlayerHealth playerHealth;
+    PlayerHands playerHands;
 
     private void Awake() {
         playerHealth = GetComponent<PlayerHealth>();
+        playerHands = GetComponent<PlayerHands>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(InShadow()) {
+        if(!playerHands.IsTorchOut() && InShadow()) {
             Debug.Log("I'm in the shadows!");
-        } else {
-
         }
     }
 
