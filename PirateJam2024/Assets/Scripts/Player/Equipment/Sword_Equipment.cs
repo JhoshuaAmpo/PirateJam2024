@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Sword_Equipment : Equipment_Base
 {
+    public float sword_damage;
     List<Transform> enemiesInStrikeRange;
     Collider strikeBox;
 
@@ -26,12 +27,12 @@ public class Sword_Equipment : Equipment_Base
         }
         if (closestEnemy) {
             Debug.Log("Strinking enemy: " + closestEnemy.name);
+            closestEnemy.GetComponent<EnemyHealth>().TakeDamage(sword_damage);
         }
-        // closestEnemy.TakeDamage();
     }
 
     private void OnTriggerEnter(Collider other) {
-        // Debug.Log(other.name + " has entered striking range");
+        Debug.Log(other.name + " has entered striking range");
         enemiesInStrikeRange.Add(other.transform);
     }
 

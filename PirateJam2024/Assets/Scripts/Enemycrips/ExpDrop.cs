@@ -9,6 +9,10 @@ public class ExpDrop : MonoBehaviour
     [Tooltip("How much exp the enemy drops")]
     private int exp;
 
+    private void Start() {
+        gameObject.SetActive(false);
+    }
+
     public int GetExp() {
         return exp;
     }

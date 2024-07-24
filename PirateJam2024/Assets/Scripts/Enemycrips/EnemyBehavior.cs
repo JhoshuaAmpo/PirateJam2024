@@ -10,7 +10,7 @@ public class EnemyBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        navMeshAgent = GetComponent<NavMeshAgent>();
+        navMeshAgent = transform.parent.GetComponentInChildren<NavMeshAgent>();
         target = GameObject.FindWithTag("Player").transform;    
     }
 

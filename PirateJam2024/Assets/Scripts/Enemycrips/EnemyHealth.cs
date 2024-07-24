@@ -5,18 +5,22 @@ using UnityEngine;
 using UnityEditor;
 using Unity.VisualScripting;
 
-public class EnemyHeath : MonoBehaviour
+public class EnemyHealth : MonoBehaviour
 {
     [SerializeField]
     private float maxHealth = 100;
 
     private float currentHealth;
-    // private xp
+    private ExpDrop expDrop;
 
     // Start is called before the first frame update
     void Awake()
     {
         currentHealth = maxHealth;
+        expDrop = transform.parent.GetComponentInChildren<ExpDrop>();
+        if (expDrop == null) { 
+            Debug.LogError("Enemy has not exp item");
+        }
         // getItem = GetComponent<itemdrop>();
     }
 
@@ -31,19 +35,20 @@ public class EnemyHeath : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
-        if (currentHealth < 0) {
+        if (currentHealth <= 0) {
             ProcessDeath();
         }
-        gameObject.SetActive(false);
     }
 
     public void ProcessDeath() {
         // trigger death anim
         // play sound
+        Debug.Log(gameObject.name + " died");
         DropExp();
+        gameObject.SetActive(false);
     }
 
     public void DropExp() {
-        
+        expDrop.gameObject.SetActive(true);
     }
 }
