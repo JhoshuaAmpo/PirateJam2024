@@ -25,11 +25,8 @@ public class PlayerDetectShadow : MonoBehaviour
     void Update()
     {
         if(!playerHands.IsTorchOut() && InShadow()) {
-            Debug.Log("I'm in the shadows!");
-                playerHealth.TakeDamage(playerHealth.MaxHP);
-            // if(playerHealth.CurrentHP > 0) {
-
-            // }
+            // Debug.Log("I'm in the shadows!");
+            playerHealth.TakeDamage(playerHealth.MaxHP);
         }
     }
 

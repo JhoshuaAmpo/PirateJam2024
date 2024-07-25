@@ -9,9 +9,14 @@ public class PlayerHealth : MonoBehaviour
 
     [SerializeField]
     private SpawnPointManager spawnPointManager;
+    [SerializeField]
+    private GameObject deathScreen;
+
+    private CharacterController characterController;
 
     private void Awake() {
         CurrentHP = MaxHP;
+        characterController = GetComponent<CharacterController>();
     }
 
     public void TakeDamage(float damage){
@@ -36,12 +41,18 @@ public class PlayerHealth : MonoBehaviour
     private void ProcessDeath() {
         Debug.Log("Player died!");
         Respawn();
+        PauseGame.Instance.Pause();
+        deathScreen.SetActive(true);
     }
 
     public void Respawn() {
-        GetComponent<CharacterController>().enabled = false;
+        if (PauseGame.Instance.isGamePaused) { 
+            PauseGame.Instance.Resume();
+        }
+        characterController.enabled = false;
         transform.position = spawnPointManager.GetLatestSpawnPoint();
-        GetComponent<CharacterController>().enabled = true;
+        characterController.enabled = true;
+        deathScreen.SetActive(false);
         Debug.Log(gameObject + " has respawned at: " + spawnPointManager.GetLatestSpawnPoint());
     }
 }
