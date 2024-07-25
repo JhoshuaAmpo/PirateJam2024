@@ -6,6 +6,10 @@ public class PlayerHealth : MonoBehaviour
 {
     [SerializeField]
     private float maxHP;
+    [SerializeField]
+    private Transform spawnPointParent;
+
+
     private float currentHP;
 
     private void Awake() {
