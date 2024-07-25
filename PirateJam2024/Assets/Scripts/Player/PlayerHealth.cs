@@ -39,9 +39,8 @@ public class PlayerHealth : MonoBehaviour
     }
 
     private void ProcessDeath() {
-        Debug.Log("Player died!");
-        Respawn();
         PauseGame.Instance.Pause();
+        Respawn();
         deathScreen.SetActive(true);
     }
 
@@ -53,6 +52,5 @@ public class PlayerHealth : MonoBehaviour
         transform.position = spawnPointManager.GetLatestSpawnPoint();
         characterController.enabled = true;
         deathScreen.SetActive(false);
-        Debug.Log(gameObject + " has respawned at: " + spawnPointManager.GetLatestSpawnPoint());
     }
 }

@@ -33,6 +33,10 @@ public class PlayerDetectShadow : MonoBehaviour
     private bool InShadow(){
         Vector3 origin = new(transform.position.x, transform.position.y - yOffset, transform.position.z);
         Debug.DrawRay(origin, -directionalLight.transform.forward * 100, Color.yellow, 10);
-        return Physics.Raycast(origin, -directionalLight.transform.forward, 100);
+        bool a = Physics.Raycast(origin, -directionalLight.transform.forward, out RaycastHit hit, 100);
+        if (hit.collider) {
+            Debug.Log("Hit: " + hit.collider.name);
+        }
+        return a;
     }
 }
