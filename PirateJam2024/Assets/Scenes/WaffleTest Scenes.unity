@@ -5113,6 +5113,38 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1 &856478324 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8698034632478748431, guid: 58a448cb39205d04f8266e6af69c2384, type: 3}
+  m_PrefabInstance: {fileID: 4435129657925532990}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &856478327
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 856478324}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!64 &859381667
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -14579,6 +14611,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7500262887184374974, guid: 58a448cb39205d04f8266e6af69c2384, type: 3}
+      propertyPath: projectileForce
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7884068930707106806, guid: 58a448cb39205d04f8266e6af69c2384, type: 3}
       propertyPath: m_Layer
       value: 2
@@ -14685,6 +14721,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 9199084948762887125, guid: 58a448cb39205d04f8266e6af69c2384, type: 3}
       insertIndex: -1
       addedObject: {fileID: 810863779}
+    - targetCorrespondingSourceObject: {fileID: 8698034632478748431, guid: 58a448cb39205d04f8266e6af69c2384, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 856478327}
   m_SourcePrefab: {fileID: 100100000, guid: 58a448cb39205d04f8266e6af69c2384, type: 3}
 --- !u!114 &4435129657925532991 stripped
 MonoBehaviour:
