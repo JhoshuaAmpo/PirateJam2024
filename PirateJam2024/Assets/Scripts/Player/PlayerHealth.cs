@@ -4,38 +4,44 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField]
-    private float maxHP;
-    [SerializeField]
-    private Transform spawnPointParent;
+    public float MaxHP;
+    public float CurrentHP { get; private set;}
 
-
-    private float currentHP;
+    [SerializeField]
+    private SpawnPointManager spawnPointManager;
 
     private void Awake() {
-        currentHP = maxHP;
+        CurrentHP = MaxHP;
     }
 
     public void TakeDamage(float damage){
-        currentHP -= damage;
-        if (currentHP <= 0) {
+        CurrentHP -= damage;
+        if (CurrentHP <= 0) {
             ProcessDeath();
         }
     }
 
     public void Heal(float hpRegained){
-        if (currentHP > 0) {
-            currentHP += hpRegained;
-            Mathf.Clamp(currentHP, 0, maxHP);
+        if (CurrentHP > 0) {
+            CurrentHP += hpRegained;
+            Mathf.Clamp(CurrentHP, 0, MaxHP);
         }
     }
 
     public void UpgradeMaxHP(float hpGained) {
-        maxHP += hpGained;
-        currentHP = maxHP;
+        MaxHP += hpGained;
+        CurrentHP = MaxHP;
     }
 
     private void ProcessDeath() {
         Debug.Log("Player died!");
+        Respawn();
+    }
+
+    public void Respawn() {
+        GetComponent<CharacterController>().enabled = false;
+        transform.position = spawnPointManager.GetLatestSpawnPoint();
+        GetComponent<CharacterController>().enabled = true;
+        Debug.Log(gameObject + " has respawned at: " + spawnPointManager.GetLatestSpawnPoint());
     }
 }

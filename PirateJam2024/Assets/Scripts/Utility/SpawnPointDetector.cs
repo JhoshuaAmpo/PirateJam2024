@@ -9,6 +9,6 @@ public class SpawnPointDetector : MonoBehaviour
         spawnPointManager = transform.parent.GetComponent<SpawnPointManager>();
     }
     private void OnTriggerEnter(Collider other) {
-        
+        spawnPointManager.ActivateNewSpawnPoint(this);
     }
 }

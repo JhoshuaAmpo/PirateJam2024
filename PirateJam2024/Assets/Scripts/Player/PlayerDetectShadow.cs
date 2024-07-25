@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerDetectShadow : MonoBehaviour
@@ -25,6 +26,10 @@ public class PlayerDetectShadow : MonoBehaviour
     {
         if(!playerHands.IsTorchOut() && InShadow()) {
             Debug.Log("I'm in the shadows!");
+                playerHealth.TakeDamage(playerHealth.MaxHP);
+            // if(playerHealth.CurrentHP > 0) {
+
+            // }
         }
     }
 
