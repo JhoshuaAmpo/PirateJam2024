@@ -5,12 +5,9 @@ using UnityEngine;
 public class Sword_Equipment : Equipment_Base
 {
     public float sword_damage;
-    [SerializeField]
-    float attackCooldown;
 
     List<Transform> enemiesInStrikeRange;
     Collider strikeBox;
-    float timer = 0;
 
     protected override void Awake() {
         base.Awake();
@@ -18,13 +15,10 @@ public class Sword_Equipment : Equipment_Base
         strikeBox = GetComponent<Collider>();
     }
 
-    private void Update() {
-        if (timer > 0) {
-            timer -= Time.deltaTime;
-            timer = Mathf.Min(0, timer);
-        }
+    protected override void Update()
+    {
+        base.Update();
     }
-
     public override void ActivateObject()
     {
         if (timer > 0) { return; }

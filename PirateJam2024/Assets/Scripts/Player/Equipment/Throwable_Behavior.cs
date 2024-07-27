@@ -2,14 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 
 public class Throwable_Behavior : MonoBehaviour
 {
     SphereCollider potionCollider;
     SphereCollider explosionCollider;
     MeshRenderer meshRenderer;
-
-    private Action<bool> finishExploding;
+    Rigidbody rb;
 
     private void Awake() {
         List<SphereCollider> scList = new();
@@ -18,11 +18,17 @@ public class Throwable_Behavior : MonoBehaviour
         potionCollider = scList[0];
         explosionCollider = scList[1];
         explosionCollider.enabled = false;
+        rb = GetComponent<Rigidbody>();
     }
 
     private void OnCollisionEnter(Collision other) {
+        ProcessExplosion();
+    }
+
+    public void ProcessExplosion() {
         ToggleComponents();
-        Debug.Log("This potion has hit something!");
+        meshRenderer.enabled = false;
+        Debug.Log("Explosion!");
     }
 
     public void ReadyPotion(){
@@ -31,8 +37,7 @@ public class Throwable_Behavior : MonoBehaviour
         explosionCollider.enabled = false;
     }
 
-    private void ToggleComponents() {
-        meshRenderer.enabled = !meshRenderer.enabled;
+    public void ToggleComponents() {
         potionCollider.enabled = !potionCollider.enabled;
         explosionCollider.enabled = !explosionCollider.enabled;
     }
