@@ -14,9 +14,11 @@ public class PlayerMovement : MonoBehaviour
     CharacterController characterController;
     Animator animator;
 
+
     void Awake() {
         playerActions = new();
         playerActions.Movement.Enable();
+        playerActions.HandActions.Enable();
         characterController = GetComponent<CharacterController>();
         animator = transform.root.GetComponentInChildren<Animator>();
         // footStepNoises.Pause();

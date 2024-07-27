@@ -5,18 +5,33 @@ using UnityEngine;
 public class Sword_Equipment : Equipment_Base
 {
     public float sword_damage;
+    [SerializeField]
+    float attackCooldown;
+
     List<Transform> enemiesInStrikeRange;
     Collider strikeBox;
+    float timer = 0;
 
-    private void Awake() {
+    protected override void Awake() {
+        base.Awake();
         enemiesInStrikeRange = new();
         strikeBox = GetComponent<Collider>();
     }
+
+    private void Update() {
+        if (timer > 0) {
+            timer -= Time.deltaTime;
+            timer = Mathf.Min(0, timer);
+        }
+    }
+
     public override void ActivateObject()
     {
+        if (timer > 0) { return; }
+        timer = attackCooldown;
         float smallestDist = 10000000f;
         Transform closestEnemy = null;
-        // trigger sword strike anim
+        playerAnimator.SetTrigger("Slash");
         // play sword sfx
         foreach(Transform enemy in enemiesInStrikeRange) {
             float curDist = Vector3.Distance(enemy.position, strikeBox.bounds.center);
