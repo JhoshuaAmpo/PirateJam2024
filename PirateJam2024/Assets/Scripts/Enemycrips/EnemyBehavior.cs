@@ -18,13 +18,13 @@ public class EnemyBehavior : MonoBehaviour
     [SerializeField]
     float attackDamage;
     [SerializeField]
-    float attackRange;
-    [SerializeField]
     float attackCooldown;
 
     NavMeshAgent navMeshAgent;
     Transform target;
     Animator animator;
+    EnemySoundMaker enemySoundMaker;
+    EnemyStrikeZone enemyStrikeZone;
     bool isPursuing = false;
     float currentHP;
     float timer;
@@ -35,6 +35,8 @@ public class EnemyBehavior : MonoBehaviour
         navMeshAgent = transform.parent.GetComponentInChildren<NavMeshAgent>();
         target = GameObject.FindWithTag("Player").transform;
         animator = GetComponentInChildren<Animator>();
+        enemySoundMaker = GetComponent<EnemySoundMaker>();
+        enemyStrikeZone = GetComponentInChildren<EnemyStrikeZone>();
         currentHP = maxHP;
     }
 
@@ -70,10 +72,12 @@ public class EnemyBehavior : MonoBehaviour
     private void Attack()
     {
         // Play attack sfx
-        target.GetComponent<PlayerHealth>().TakeDamage(attackDamage);
-        
+        enemySoundMaker.PlayAttack();
         animator.SetTrigger("Attack");
         timer = attackCooldown;
+        if (enemyStrikeZone.IsPlayerInStrikeZone) {
+            target.GetComponent<PlayerHealth>().TakeDamage(attackDamage);
+        }
     }
 
     private void OnTriggerStay(Collider other) {
@@ -96,6 +100,7 @@ public class EnemyBehavior : MonoBehaviour
     private void HuntPlayer()
     {
         animator.SetBool("Pursue", true);
+        enemySoundMaker.PlayMove();
         animator.applyRootMotion = false;
         navMeshAgent.enabled = true;
         navMeshAgent.destination = target.position;

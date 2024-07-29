@@ -10,6 +10,8 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField]
     private float maxHealth = 100;
 
+    EnemySoundMaker enemySoundMaker;
+
     private float currentHealth;
     private ExpDrop expDrop;
 
@@ -17,10 +19,11 @@ public class EnemyHealth : MonoBehaviour
     void Awake()
     {
         currentHealth = maxHealth;
-        expDrop = transform.parent.GetComponentInChildren<ExpDrop>();
-        if (expDrop == null) { 
-            Debug.LogError("Enemy has not exp item");
-        }
+        enemySoundMaker = GetComponent<EnemySoundMaker>();
+        // expDrop = transform.parent.GetComponentInChildren<ExpDrop>();
+        // if (expDrop == null) { 
+        //     Debug.LogError("Enemy has not exp item");
+        // }
         // getItem = GetComponent<itemdrop>();
     }
 
@@ -34,6 +37,7 @@ public class EnemyHealth : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        enemySoundMaker.PlayAttack();
         currentHealth -= damage;
         if (currentHealth <= 0) {
             ProcessDeath();
@@ -44,7 +48,7 @@ public class EnemyHealth : MonoBehaviour
         // trigger death anim
         // play sound
         Debug.Log(gameObject.name + " died");
-        DropExp();
+        // DropExp();
         gameObject.SetActive(false);
     }
 
