@@ -4,34 +4,53 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
+    public float MaxHP;
+    public float CurrentHP { get; private set;}
+
     [SerializeField]
-    private float maxHP;
-    private float currentHP;
+    private SpawnPointManager spawnPointManager;
+    [SerializeField]
+    private GameObject deathScreen;
+
+    private CharacterController characterController;
 
     private void Awake() {
-        currentHP = maxHP;
+        CurrentHP = MaxHP;
+        characterController = GetComponent<CharacterController>();
     }
 
     public void TakeDamage(float damage){
-        currentHP -= damage;
-        if (currentHP <= 0) {
+        CurrentHP -= damage;
+        if (CurrentHP <= 0) {
             ProcessDeath();
         }
     }
 
     public void Heal(float hpRegained){
-        if (currentHP > 0) {
-            currentHP += hpRegained;
-            Mathf.Clamp(currentHP, 0, maxHP);
+        if (CurrentHP > 0) {
+            CurrentHP += hpRegained;
+            Mathf.Clamp(CurrentHP, 0, MaxHP);
         }
     }
 
     public void UpgradeMaxHP(float hpGained) {
-        maxHP += hpGained;
-        currentHP = maxHP;
+        MaxHP += hpGained;
+        CurrentHP = MaxHP;
     }
 
     private void ProcessDeath() {
-        Debug.Log("Player died!");
+        PauseGame.Instance.Pause();
+        Respawn();
+        deathScreen.SetActive(true);
+    }
+
+    public void Respawn() {
+        if (PauseGame.Instance.isGamePaused) { 
+            PauseGame.Instance.Resume();
+        }
+        characterController.enabled = false;
+        transform.position = spawnPointManager.GetLatestSpawnPoint();
+        characterController.enabled = true;
+        deathScreen.SetActive(false);
     }
 }
