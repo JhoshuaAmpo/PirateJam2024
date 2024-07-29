@@ -41,6 +41,7 @@ public class PlayerHealth : MonoBehaviour
     private void ProcessDeath() {
         PauseGame.Instance.Pause();
         Respawn();
+        Cursor.visible = true;
         deathScreen.SetActive(true);
     }
 
@@ -48,9 +49,11 @@ public class PlayerHealth : MonoBehaviour
         if (PauseGame.Instance.isGamePaused) { 
             PauseGame.Instance.Resume();
         }
+        CurrentHP = MaxHP;
         characterController.enabled = false;
         transform.position = spawnPointManager.GetLatestSpawnPoint();
         characterController.enabled = true;
+        Cursor.visible = false;
         deathScreen.SetActive(false);
     }
 }
