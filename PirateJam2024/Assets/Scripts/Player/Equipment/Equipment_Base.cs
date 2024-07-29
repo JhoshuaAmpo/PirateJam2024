@@ -24,7 +24,7 @@ public abstract class Equipment_Base : MonoBehaviour
         if (timer > 0)
         {
             timer -= Time.deltaTime;
-            timer = Mathf.Min(0, timer);
+            timer = Mathf.Max(0, timer);
         }
     }
 }

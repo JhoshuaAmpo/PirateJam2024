@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -8,29 +10,70 @@ public class EnemyBehavior : MonoBehaviour
     [Range(0,180)]
     [Tooltip("Half field of view in degrees")]
     int HalfFOV;
+    [SerializeField]
+    List<Vector3> pathing;
+    [SerializeField]
+    float maxHP;
+    [Header("Attack Settings")]
+    [SerializeField]
+    float attackDamage;
+    [SerializeField]
+    float attackRange;
+    [SerializeField]
+    float attackCooldown;
 
     NavMeshAgent navMeshAgent;
     Transform target;
     Animator animator;
-
     bool isPursuing = false;
+    float currentHP;
+    float timer;
+
     // Start is called before the first frame update
     void Awake()
     {
         navMeshAgent = transform.parent.GetComponentInChildren<NavMeshAgent>();
         target = GameObject.FindWithTag("Player").transform;
         animator = GetComponentInChildren<Animator>();
+        currentHP = maxHP;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isPursuing) {
+        // HuntPlayer();
+        if (Vector3.Distance(target.position, transform.position) <= navMeshAgent.stoppingDistance)
+        {
+            animator.SetBool("Pursue", false);
+            animator.applyRootMotion = true;
+            if (timer <= 0) {
+                Attack();
+            }
+        }
+        else if (isPursuing) {
             HuntPlayer();
         }
-        // if (Vector3.Distance(transform.position, target.position) <= navMeshAgent.stoppingDistance) {
-        //     animator.SetBool("Pursue", false);
-        // }
+        else {
+            Idle();
+        }
+
+        if (timer > 0) {
+            timer -= Time.deltaTime;
+            timer = MathF.Max(0, timer);
+        }
+    }
+
+    private void Idle() {
+        animator.applyRootMotion = true;
+    }
+
+    private void Attack()
+    {
+        // Play attack sfx
+        target.GetComponent<PlayerHealth>().TakeDamage(attackDamage);
+        
+        animator.SetTrigger("Attack");
+        timer = attackCooldown;
     }
 
     private void OnTriggerStay(Collider other) {
@@ -40,22 +83,20 @@ public class EnemyBehavior : MonoBehaviour
         }
     }
 
-    void Idle() {
-
-    }
 
     // Only call in on trigger
     private bool PlayerInFOV() {
         Vector3 dirToPlayer = target.transform.position - transform.position;
         dirToPlayer.y = 0;
         float angle = Vector3.Angle(dirToPlayer, transform.forward);
-        Debug.Log("Angle diff between player and " + gameObject.name + ": " + angle);
+        // Debug.Log("Angle diff between player and " + gameObject.name + ": " + angle);
         return angle < HalfFOV;
     }
 
     private void HuntPlayer()
     {
         animator.SetBool("Pursue", true);
+        animator.applyRootMotion = false;
         navMeshAgent.enabled = true;
         navMeshAgent.destination = target.position;
     }

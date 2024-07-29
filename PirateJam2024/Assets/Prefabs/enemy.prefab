@@ -45,8 +45,8 @@ NavMeshAgent:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7810786209255033223}
   m_Enabled: 1
-  m_AgentTypeID: 287145453
-  m_Radius: 1
+  m_AgentTypeID: 658490984
+  m_Radius: 0.5
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -58,7 +58,7 @@ NavMeshAgent:
   m_Height: 2.5
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 2
 --- !u!54 &1822287648925237595
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -105,7 +105,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2599853809114410520
 MonoBehaviour:
@@ -132,6 +132,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f5f9db9bfafbde45885c3a737b1d26d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HalfFOV: 45
+  pathing: []
+  maxHP: 100
+  attackDamage: 5
+  attackRange: 1
+  attackCooldown: 5
 --- !u!1001 &3234575595658947808
 PrefabInstance:
   m_ObjectHideFlags: 0

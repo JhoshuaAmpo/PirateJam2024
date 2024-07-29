@@ -2061,7 +2061,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 284708200}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
   m_Name: 
@@ -2127,7 +2127,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.33333334
+  m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 461a31adaa5f61240b3628e7144d3ad1, type: 2}
   m_BuildHeightMesh: 0
@@ -14770,12 +14770,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 1667457279}
     m_Modifications:
     - target: {fileID: 2682096377772731360, guid: 7f22cd06e8bc3824f94ba6ec24e629de, type: 3}
-      propertyPath: m_Radius
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2682096377772731360, guid: 7f22cd06e8bc3824f94ba6ec24e629de, type: 3}
       propertyPath: m_AgentTypeID
       value: 658490984
+      objectReference: {fileID: 0}
+    - target: {fileID: 2682096377772731360, guid: 7f22cd06e8bc3824f94ba6ec24e629de, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128097526953757451, guid: 7f22cd06e8bc3824f94ba6ec24e629de, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.1
       objectReference: {fileID: 0}
     - target: {fileID: 4159511633376262286, guid: 7f22cd06e8bc3824f94ba6ec24e629de, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14783,7 +14787,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4159511633376262286, guid: 7f22cd06e8bc3824f94ba6ec24e629de, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.81
+      value: 3.12
       objectReference: {fileID: 0}
     - target: {fileID: 4159511633376262286, guid: 7f22cd06e8bc3824f94ba6ec24e629de, type: 3}
       propertyPath: m_LocalPosition.z
@@ -14817,21 +14821,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4913058779718165263, guid: 7f22cd06e8bc3824f94ba6ec24e629de, type: 3}
-      propertyPath: m_Radius
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 7810786209255033223, guid: 7f22cd06e8bc3824f94ba6ec24e629de, type: 3}
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 7810786209255033223, guid: 7f22cd06e8bc3824f94ba6ec24e629de, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9045779967138763121, guid: 7f22cd06e8bc3824f94ba6ec24e629de, type: 3}
       propertyPath: m_ApplyRootMotion
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14858,6 +14858,10 @@ PrefabInstance:
       propertyPath: directionalLight
       value: 
       objectReference: {fileID: 239867254}
+    - target: {fileID: 4776534678292710792, guid: 58a448cb39205d04f8266e6af69c2384, type: 3}
+      propertyPath: attackCooldown
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5015801202420953370, guid: 58a448cb39205d04f8266e6af69c2384, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.000009854635
@@ -14877,6 +14881,10 @@ PrefabInstance:
     - target: {fileID: 5015801202420953370, guid: 58a448cb39205d04f8266e6af69c2384, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5644102207384239255, guid: 58a448cb39205d04f8266e6af69c2384, type: 3}
+      propertyPath: moveSpeed
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7500262887184374974, guid: 58a448cb39205d04f8266e6af69c2384, type: 3}
       propertyPath: projectile
