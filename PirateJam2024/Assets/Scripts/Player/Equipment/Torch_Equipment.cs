@@ -10,6 +10,8 @@ public class Torch_Equipment : Equipment_Base
     float mpGain;
     [SerializeField]
     float mpDrain;
+    [SerializeField]
+    HUDBar hUDBar;
 
     float currentMP;
 
@@ -44,6 +46,7 @@ public class Torch_Equipment : Equipment_Base
             currentMP += Time.deltaTime * mpGain;
         }
         currentMP = Mathf.Clamp(currentMP, 0, maxMP);
+        hUDBar.SetBar(currentMP/maxMP);
     }
     
     private void ToggleLightSource(){

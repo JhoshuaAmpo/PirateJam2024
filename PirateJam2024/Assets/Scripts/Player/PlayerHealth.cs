@@ -12,6 +12,9 @@ public class PlayerHealth : MonoBehaviour
     private SpawnPointManager spawnPointManager;
     [SerializeField]
     private GameObject deathScreen;
+    [SerializeField]
+    private HUDBar hpBar;
+
 
     private CharacterController characterController;
 
@@ -22,6 +25,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(float damage){
         CurrentHP -= damage;
+        hpBar.SetBar(CurrentHP/MaxHP);
         if (CurrentHP <= 0) {
             ProcessDeath();
         }
@@ -30,6 +34,7 @@ public class PlayerHealth : MonoBehaviour
     public void Heal(float hpRegained){
         if (CurrentHP > 0) {
             CurrentHP += hpRegained;
+            hpBar.SetBar(CurrentHP/MaxHP);
             Mathf.Clamp(CurrentHP, 0, MaxHP);
         }
     }
