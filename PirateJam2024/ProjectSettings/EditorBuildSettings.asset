@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Game Scenes/MainMenu.unity
     guid: 43f62c8b3f8a6814dac898142d77c3d3
   - enabled: 1
-    path: Assets/Scenes/WaffleTest Scenes.unity
+    path: Assets/Scenes/Game Scenes/WaffleTest Scenes.unity
     guid: 07c590f1f4dd12746aee0014e3ca2899
   m_configObjects: {}
