@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
@@ -40,20 +41,23 @@ public class PlayerHealth : MonoBehaviour
 
     private void ProcessDeath() {
         PauseGame.Instance.Pause();
-        Respawn();
         Cursor.visible = true;
         deathScreen.SetActive(true);
     }
 
     public void Respawn() {
-        if (PauseGame.Instance.isGamePaused) { 
-            PauseGame.Instance.Resume();
-        }
-        CurrentHP = MaxHP;
-        characterController.enabled = false;
-        transform.position = spawnPointManager.GetLatestSpawnPoint();
-        characterController.enabled = true;
-        Cursor.visible = false;
+        Debug.Log("I have been clicked");
         deathScreen.SetActive(false);
+        Cursor.visible = false;
+        PauseGame.Instance.Resume();
+        // if (PauseGame.Instance.isGamePaused) { 
+        //     PauseGame.Instance.Resume();
+        // }
+        // CurrentHP = MaxHP;
+        // characterController.enabled = false;
+        // transform.position = spawnPointManager.GetLatestSpawnPoint();
+        // characterController.enabled = true;
+        
+        // deathScreen.SetActive(false);
     }
 }

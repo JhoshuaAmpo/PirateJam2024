@@ -14,7 +14,7 @@ public class PauseGame : MonoBehaviour
     [SerializeField]
     [Tooltip("Adds more time to the game being paused between exiting the pause menu and resuming play of the game")]
     private float resumeDelayTime = 0f;
-    float prevTimeScale = 0f;
+    float prevTimeScale = 1f;
 
     private GameObject player;
     private PlayerMovement playerMovement;
@@ -35,7 +35,6 @@ public class PauseGame : MonoBehaviour
 
     public void Pause()
     {
-        prevTimeScale = Time.timeScale;
         Time.timeScale = 0;
         isGamePaused = true;
         AudioListener.pause = true;
@@ -47,7 +46,7 @@ public class PauseGame : MonoBehaviour
     public void Resume()
     {
         StartCoroutine(ResumeGameDelay());
-        Time.timeScale = prevTimeScale;
+        Time.timeScale = 1;
         isGamePaused = false;
         AudioListener.pause = false;
         playerMovement.enabled = true;
