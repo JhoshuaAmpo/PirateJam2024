@@ -24,7 +24,7 @@ public class PlayerDetectShadow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!playerHands.IsTorchOut() && InShadow()) {
+        if(!playerHands.IsLightOn() && InShadow()) {
             // Debug.Log("I'm in the shadows!");
             playerHealth.TakeDamage(playerHealth.MaxHP);
         }

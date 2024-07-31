@@ -26,9 +26,9 @@ public class PlayerHands : MonoBehaviour
         playerActions = new();
         playerActions.HandActions.Enable();
         playerActions.HandActions.UseLeftHand.performed += UseLeftHand;
-        playerActions.HandActions.SwitchLeftHand.performed += SwitchLeftHand;
+        // playerActions.HandActions.SwitchLeftHand.performed += SwitchLeftHand;
         playerActions.HandActions.UseRightHand.performed += UseRightHand;
-        playerActions.HandActions.SwitchRightHand.performed += SwitchRightHand;
+        // playerActions.HandActions.SwitchRightHand.performed += SwitchRightHand;
 
         foreach (var item in leftHandEquipment)
         {
@@ -79,7 +79,9 @@ public class PlayerHands : MonoBehaviour
         return rightHandEquipment[rightHandIndex];
     }
 
-    public bool IsTorchOut() {
-        return rightHandEquipment[rightHandIndex] is Torch_Equipment;
+    public bool IsLightOn() {
+        if(rightHandEquipment[rightHandIndex] is not Torch_Equipment) { return false; }
+        Torch_Equipment temp = (Torch_Equipment)rightHandEquipment[rightHandIndex];
+        return temp.IsLightOn();
     }
 }
