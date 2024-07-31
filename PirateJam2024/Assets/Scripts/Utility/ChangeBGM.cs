@@ -16,7 +16,8 @@ public class ChangeBGM : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Player") && !alreadyTriggerd) {
-            bGMManager.AddToQueue(audioClip);
+            // bGMManager.AddToQueue(audioClip);
+            bGMManager.PlayClip(audioClip);
             alreadyTriggerd = true;
         }
     }

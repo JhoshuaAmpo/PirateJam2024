@@ -12,22 +12,37 @@ public class BGMManager : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    private void Update() {
-        if (audioClips.Count > 0) {
-            audioSource.loop = false;
-            if (!audioSource.isPlaying) {
-                audioSource.clip = audioClips[0];
-                audioClips.Remove(audioClips[0]);
-                audioSource.Play();
-                if (audioClips.Count == 0) {
-                    audioSource.loop = true;
-                }
-            }
-        }
+    public void PlayClip(AudioClip clip) {
+        audioSource.Stop();
+        audioSource.clip = clip;
+        audioSource.Play();
     }
 
-    public void AddToQueue(AudioClip clip) {
-        audioClips.Add(clip);
-        audioSource.loop = false;
-    }
+    // private void Update()
+    // {
+    //     PlayWhenClipEnds();
+    // }
+
+    // private void PlayWhenClipEnds()
+    // {
+    //     if (audioClips.Count > 0)
+    //     {
+    //         audioSource.loop = false;
+    //         if (!audioSource.isPlaying)
+    //         {
+    //             audioSource.clip = audioClips[0];
+    //             audioClips.Remove(audioClips[0]);
+    //             audioSource.Play();
+    //             if (audioClips.Count == 0)
+    //             {
+    //                 audioSource.loop = true;
+    //             }
+    //         }
+    //     }
+    // }
+
+    // public void AddToQueue(AudioClip clip) {
+    //     audioClips.Add(clip);
+    //     audioSource.loop = false;
+    // }
 }

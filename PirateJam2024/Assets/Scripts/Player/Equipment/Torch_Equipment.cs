@@ -17,9 +17,12 @@ public class Torch_Equipment : Equipment_Base
 
     Light lightSource;
 
+    AudioSource audioSource;
+
     protected override void Awake() {
         base.Awake();
         lightSource = GetComponent<Light>();
+        audioSource = GetComponent<AudioSource>();
         currentMP = maxMP;
     }
 
@@ -51,6 +54,11 @@ public class Torch_Equipment : Equipment_Base
     
     private void ToggleLightSource(){
         lightSource.enabled = !lightSource.enabled;
+        if (lightSource.enabled) {
+            audioSource.Play();
+        } else {
+            audioSource.Stop();
+        }
     }
 
     

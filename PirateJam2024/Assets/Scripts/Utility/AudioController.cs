@@ -26,11 +26,15 @@ public class AudioController : MonoBehaviour
     private void Awake() {
         foreach (var source in musicSources)
         {
-            source.volume = GetMusicVolume();
+            if (source != null) {
+                source.volume = GetMusicVolume();
+            }
         }
         foreach (var source in sfxSources)
         {
-            source.volume = GetSFXVolume();
+            if (source != null) {
+                source.volume = GetSFXVolume();
+            }
         }
 
         if (musicSlider != null) {
@@ -79,12 +83,16 @@ public class AudioController : MonoBehaviour
         switch (type) {
             case AudioType.music:
             foreach (AudioSource audSour in musicSources) {
-                audSour.volume = val;
+                if (audSour != null){
+                    audSour.volume = val;
+                }
             }
             break;
             case AudioType.sfx:
             foreach (AudioSource audSour in sfxSources) {
-                audSour.volume = val;
+                if (audSour != null){
+                    audSour.volume = val;
+                }
             }
             break;
         }
