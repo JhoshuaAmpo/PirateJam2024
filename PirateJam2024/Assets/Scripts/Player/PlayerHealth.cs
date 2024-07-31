@@ -40,7 +40,7 @@ public class PlayerHealth : MonoBehaviour
     public void Heal(float hpRegained){
         if (CurrentHP > 0) {
             CurrentHP += hpRegained;
-            Mathf.Clamp(CurrentHP, 0, MaxHP);
+            CurrentHP = Mathf.Clamp(CurrentHP, 0, MaxHP);
             hpBar.SetBar(CurrentHP/MaxHP);
         }
     }

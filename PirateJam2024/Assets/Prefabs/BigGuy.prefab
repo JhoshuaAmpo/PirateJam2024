@@ -88,6 +88,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 8214825061540115555, guid: 7f22cd06e8bc3824f94ba6ec24e629de, type: 3}
+      propertyPath: attackDamage
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 9045779967138763121, guid: 7f22cd06e8bc3824f94ba6ec24e629de, type: 3}
       propertyPath: m_ApplyRootMotion
       value: 0
