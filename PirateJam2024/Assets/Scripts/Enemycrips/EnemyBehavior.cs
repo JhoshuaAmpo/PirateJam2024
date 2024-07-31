@@ -32,7 +32,7 @@ public class EnemyBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        navMeshAgent = transform.parent.GetComponentInChildren<NavMeshAgent>();
+        navMeshAgent = GetComponent<NavMeshAgent>();
         target = GameObject.FindWithTag("Player").transform;
         animator = GetComponentInChildren<Animator>();
         enemySoundMaker = GetComponent<EnemySoundMaker>();
@@ -90,7 +90,7 @@ public class EnemyBehavior : MonoBehaviour
 
     // Only call in on trigger
     private bool PlayerInFOV() {
-        Vector3 dirToPlayer = target.transform.position - transform.position;
+        Vector3 dirToPlayer = target.transform.position - this.transform.position;
         dirToPlayer.y = 0;
         float angle = Vector3.Angle(dirToPlayer, transform.forward);
         // Debug.Log("Angle diff between player and " + gameObject.name + ": " + angle);
