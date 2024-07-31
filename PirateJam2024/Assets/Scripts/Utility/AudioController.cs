@@ -40,16 +40,25 @@ public class AudioController : MonoBehaviour
             sfxSlider.value = GetSFXVolume();
         }
         if (musicPercentageText != null) {
-
+            musicPercentageText.text = FloatToPercent(GetMusicVolume());
+        }
+        if (sfxPercentageText != null) {
+            sfxPercentageText.text = FloatToPercent(GetSFXVolume());
         }
     }
 
     public void SetMusicVolume(float vol) {
         SetVolume(AudioType.music,vol);
+        if (musicPercentageText != null) {
+            musicPercentageText.text = FloatToPercent(GetMusicVolume());
+        }
     }
 
     public void SetSFXVolume(float vol) {
         SetVolume(AudioType.sfx,vol);
+        if (sfxPercentageText != null) {
+            sfxPercentageText.text = FloatToPercent(GetSFXVolume());
+        }
     }
 
     public float GetMusicVolume() {
@@ -65,8 +74,20 @@ public class AudioController : MonoBehaviour
     }
     
     private void SetVolume(AudioType type, float val) {
-        Mathf.Clamp(val, 0, 1);
+        val = Mathf.Clamp(val, 0, 1);
         PlayerPrefs.SetFloat(type.ToString(), val);
+        switch (type) {
+            case AudioType.music:
+            foreach (AudioSource audSour in musicSources) {
+                audSour.volume = val;
+            }
+            break;
+            case AudioType.sfx:
+            foreach (AudioSource audSour in sfxSources) {
+                audSour.volume = val;
+            }
+            break;
+        }
     }
 
     private float GetVolume(AudioType type) {

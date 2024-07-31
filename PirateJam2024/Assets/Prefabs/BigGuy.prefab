@@ -15,7 +15,7 @@ PrefabInstance:
     - target: {fileID: 362566085033915407, guid: 7f22cd06e8bc3824f94ba6ec24e629de, type: 3}
       propertyPath: attackSFX
       value: 
-      objectReference: {fileID: 8300000, guid: 01e04c687fd11bb4da31d6991f24533d, type: 3}
+      objectReference: {fileID: 8300000, guid: cc92cd54f29d5bf45a24d072ade83340, type: 3}
     - target: {fileID: 1840982308352833508, guid: 7f22cd06e8bc3824f94ba6ec24e629de, type: 3}
       propertyPath: m_Size.x
       value: 1.5
