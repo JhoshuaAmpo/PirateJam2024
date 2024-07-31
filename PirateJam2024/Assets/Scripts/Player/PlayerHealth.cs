@@ -14,6 +14,8 @@ public class PlayerHealth : MonoBehaviour
     private GameObject deathScreen;
     [SerializeField]
     private HUDBar hpBar;
+    [SerializeField]
+    private float hpGainedPerSecond;
 
 
     private CharacterController characterController;
@@ -21,6 +23,10 @@ public class PlayerHealth : MonoBehaviour
     private void Awake() {
         CurrentHP = MaxHP;
         characterController = GetComponent<CharacterController>();
+    }
+
+    private void Update() {
+        Heal(hpGainedPerSecond * Time.deltaTime);
     }
 
     public void TakeDamage(float damage){
@@ -34,8 +40,8 @@ public class PlayerHealth : MonoBehaviour
     public void Heal(float hpRegained){
         if (CurrentHP > 0) {
             CurrentHP += hpRegained;
-            hpBar.SetBar(CurrentHP/MaxHP);
             Mathf.Clamp(CurrentHP, 0, MaxHP);
+            hpBar.SetBar(CurrentHP/MaxHP);
         }
     }
 
