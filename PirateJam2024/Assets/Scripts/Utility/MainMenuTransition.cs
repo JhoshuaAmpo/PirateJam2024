@@ -22,7 +22,6 @@ public class MainMenuTransition : MonoBehaviour
         GetComponentsInChildren<CinemachineVirtualCamera>(cameras);
         cameras[0].gameObject.SetActive(true);
         cameras[1].gameObject.SetActive(false);
-        Debug.Log(camBrain.m_DefaultBlend.m_Time);
     }
 
     public void PlayButton() {

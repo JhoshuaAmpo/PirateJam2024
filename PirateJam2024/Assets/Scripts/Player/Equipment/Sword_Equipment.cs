@@ -23,7 +23,6 @@ public class Sword_Equipment : Equipment_Base
     {
         playerAnimator.SetTrigger("Slash");
         AnimationClip nextClip = playerAnimator.GetCurrentAnimatorClipInfo(1)[0].clip;
-        Debug.Log(nextClip);
         if (timer > 0) { return; }
         timer = attackCooldown;
         float smallestDist = 10000000f;
@@ -37,13 +36,13 @@ public class Sword_Equipment : Equipment_Base
             }
         }
         if (closestEnemy) {
-            Debug.Log("Strinking enemy: " + closestEnemy.name);
+            // Debug.Log("Strinking enemy: " + closestEnemy.name);
             closestEnemy.GetComponent<EnemyHealth>().TakeDamage(sword_damage);
         }
     }
 
     private void OnTriggerEnter(Collider other) {
-        Debug.Log(other.name + " has entered striking range");
+        // Debug.Log(other.name + " has entered striking range");
         enemiesInStrikeRange.Add(other.transform);
     }
 

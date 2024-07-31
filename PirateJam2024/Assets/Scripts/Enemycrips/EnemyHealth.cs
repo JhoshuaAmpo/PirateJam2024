@@ -47,7 +47,7 @@ public class EnemyHealth : MonoBehaviour
     public void ProcessDeath() {
         // trigger death anim
         // play sound
-        Debug.Log(gameObject.name + " died");
+        // Debug.Log(gameObject.name + " died");
         // DropExp();
         gameObject.SetActive(false);
     }

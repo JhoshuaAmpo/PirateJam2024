@@ -51,16 +51,16 @@ public class PlayerHealth : MonoBehaviour
     }
 
     private void ProcessDeath() {
-        PauseGame.Instance.Pause();
         Cursor.visible = true;
         deathScreen.SetActive(true);
+        gameObject.SetActive(false);
     }
 
     public void Respawn() {
-        Debug.Log("I have been clicked");
+        // Debug.Log("I have been clicked");
         deathScreen.SetActive(false);
         Cursor.visible = false;
-        PauseGame.Instance.Resume();
+        // PauseGame.Instance.Resume();
         // if (PauseGame.Instance.isGamePaused) { 
         //     PauseGame.Instance.Resume();
         // }

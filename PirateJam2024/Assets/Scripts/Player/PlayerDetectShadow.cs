@@ -37,9 +37,9 @@ public class PlayerDetectShadow : MonoBehaviour
         if (a) {
             a = !hit.collider.CompareTag("enemy");
         }
-        if (hit.collider) {
-            Debug.Log("Hit: " + hit.collider.name);
-        }
+        // if (hit.collider) {
+        //     Debug.Log("Hit: " + hit.collider.name);
+        // }
         return a;
     }
 }
